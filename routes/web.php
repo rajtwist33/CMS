@@ -1,8 +1,11 @@
 <?php
 
-use App\Http\Controllers\backend\CompanysettingController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Models\backend\Companysetting;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\backend\CompanysettingController;
+use App\Http\Controllers\backend\usermanagement\PermissionController;
+use App\Http\Controllers\backend\usermanagement\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +23,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('backend.dashboard');
+    $setting = Companysetting::with('link')->first();
+    return view('backend.dashboard',compact('setting'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], function () {
@@ -28,6 +32,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
         Route::resources(
             [
                 'settings' => CompanysettingController::class,
+                'permission'=>PermissionController::class,
+                'roles'=>RoleController::class,
             ]
         );
 

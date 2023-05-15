@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 footer-copyright text-center">
-                <p class="mb-0">Copyright 2022 © Zeta theme by pixelstrap </p>
+                <p class="mb-0">{!!$setting->footer ?? 'DEMO All right reserved.' !!}</p>
             </div>
         </div>
     </div>

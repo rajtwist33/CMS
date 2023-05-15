@@ -26,24 +26,41 @@ class CompanysettingController extends Controller
         return view('backend.pages.company_settings.create',compact('setting',));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        // dd($request->all());
+        if (!empty($request->logo)) {
+            $file =$request->file('logo');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.' . $extension;
+            $file->move(public_path('logo/'), $filename);
+
+            $image =  Companysetting::Where('id',$request->data_id)->pluck('logo');
+            $image_path = public_path('logo/'.$image);
+            if(file_exists($image_path)){
+                unlink($image_path);
+              }
+              Companysetting::updateOrCreate([
+                'id'=>$request->data_id,
+            ],
+        [
+            'logo'=>$filename,
+        ]);
+
+        }
         DB::beginTransaction();
+
         try {
             $parent =  Companysetting::updateOrCreate([
                 'id'=>$request->data_id,
             ],
         [
-            'logo'=>$request->logo,
+           
             'name'=>$request->name,
             'address'=>$request->address,
             'phone'=>$request->phone,
             'email'=>$request->email,
             'maps'=>$request->map_links,
+            'footer'=>$request->footer,
             'slug'=>rand(1,9999),
         ]);
 

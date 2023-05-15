@@ -1,22 +1,30 @@
 <div class="sidebar-wrapper">
     <div>
         <div class="logo-wrapper">
-            <a href="{{route('dashboard')}}">
-                <img class="img-fluid for-light" src="{{ asset('backend/assets/images/demo.png') }}" alt="">
-                <img class="img-fluid for-dark" src="{{ asset('backend/assets/images/demo.png') }}" alt="">
+            <a href="{{ route('dashboard') }}">
+                @if ($setting != '')
+                    <img class="img-fluid for-light rounded-3"
+                        src="{{ $setting->logo != '' ? asset('logo/' . $setting->logo) : asset('backend/assets/images/demo.png') }}">
+                    <img class="img-fluid for-dark rounded-3"
+                        src="{{ $setting->logo != '' ? asset('logo/' . $setting->logo) : asset('backend/assets/images/demo.png') }}">
+                @else
+                    <img class="img-fluid for-light rounded-3" src="{{ asset('backend/assets/images/demo.png') }}">
+                    <img class="img-fluid for-dark rounded-3" src="{{ asset('backend/assets/images/demo.png') }}">
+                @endif
+
             </a>
             <div class="back-btn"><i class="fa fa-angle-left"></i></div>
         </div>
         <div class="logo-icon-wrapper">
-            <a href="{{route('dashboard')}}"><img class="img-fluid" src="{{ asset('backend/assets/images/demo.png') }}"
-                    alt="">
+            <a href="{{ route('dashboard') }}"><img class="img-fluid"
+                    src="{{ asset('backend/assets/images/demo.png') }}" alt="">
             </a>
         </div>
         <nav class="sidebar-main">
             <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
-            <div id="sidebar-menu">
+            <div id="sidebar-menu ">
                 <ul class="sidebar-links" id="simple-bar">
-                    <li class="back-btn"><a href="{{route('dashboard')}}">
+                    <li class="back-btn"><a href="{{ route('dashboard') }}">
                             <img class="img-fluid"src="{{ asset('backend/assets/images/logo-icon.png') }}"
                                 alt="">
                         </a>
@@ -26,27 +34,39 @@
                             </i>
                         </div>
                     </li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+
+                    <li class="sidebar-list mt-3"><a class="sidebar-link sidebar-title" href="{{ route('dashboard') }}">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <g>
                                     <g>
+                                        <path d="M9.07861 16.1355H14.8936" stroke="#130F26" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
                                         <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M2.75024 12C2.75024 5.063 5.06324 2.75 12.0002 2.75C18.9372 2.75 21.2502 5.063 21.2502 12C21.2502 18.937 18.9372 21.25 12.0002 21.25C5.06324 21.25 2.75024 18.937 2.75024 12Z"
+                                            d="M2.3999 13.713C2.3999 8.082 3.0139 8.475 6.3189 5.41C7.7649 4.246 10.0149 2 11.9579 2C13.8999 2 16.1949 4.235 17.6539 5.41C20.9589 8.475 21.5719 8.082 21.5719 13.713C21.5719 22 19.6129 22 11.9859 22C4.3589 22 2.3999 22 2.3999 13.713Z"
                                             stroke="#130F26" stroke-width="1.5" stroke-linecap="round"
                                             stroke-linejoin="round"></path>
-                                        <path d="M15.2045 13.8999H15.2135" stroke="#130F26" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path d="M12.2045 9.8999H12.2135" stroke="#130F26" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path d="M9.19557 13.8999H9.20457" stroke="#130F26" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"></path>
                                     </g>
                                 </g>
-                            </svg><span class="lan-6">Widgets</span></a>
+                            </svg><span class="">Dashboard</span></a>
+
+                    </li>
+                    <li class="sidebar-list "><a class="sidebar-link sidebar-title" href="#">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                              <g>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9724 20.3683C8.73343 20.3683 5.96643 19.8783 5.96643 17.9163C5.96643 15.9543 8.71543 14.2463 11.9724 14.2463C15.2114 14.2463 17.9784 15.9383 17.9784 17.8993C17.9784 19.8603 15.2294 20.3683 11.9724 20.3683Z" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9725 11.4488C14.0985 11.4488 15.8225 9.72576 15.8225 7.59976C15.8225 5.47376 14.0985 3.74976 11.9725 3.74976C9.84645 3.74976 8.12245 5.47376 8.12245 7.59976C8.11645 9.71776 9.82645 11.4418 11.9455 11.4488H11.9725Z" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M18.3622 10.3915C19.5992 10.0605 20.5112 8.93254 20.5112 7.58954C20.5112 6.18854 19.5182 5.01854 18.1962 4.74854" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M18.9431 13.5444C20.6971 13.5444 22.1951 14.7334 22.1951 15.7954C22.1951 16.4204 21.6781 17.1014 20.8941 17.2854" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M5.58372 10.3915C4.34572 10.0605 3.43372 8.93254 3.43372 7.58954C3.43372 6.18854 4.42772 5.01854 5.74872 4.74854" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M5.00176 13.5444C3.24776 13.5444 1.74976 14.7334 1.74976 15.7954C1.74976 16.4204 2.26676 17.1014 3.05176 17.2854" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                              </g>
+                            </g>
+                          </svg><span class="">User Management</span></a>
                         <ul class="sidebar-submenu">
-                            <li><a href="general-widget.html">General</a></li>
-                            <li><a href="chart-widget.html">Chart</a></li>
+                            <li><a href="{{route('admin.roles.index')}}">Roles</a></li>
+                            <li><a href="{{route('admin.permission.create')}}">Permission</a></li>
                         </ul>
                     </li>
                 </ul>
